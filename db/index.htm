@@ -66,7 +66,7 @@
 	function submit() {
         if ($('#name').val().trim() == "") {alert('اكتب الاسم الثلاثي قبل الإرسال');return;}
 		if ($('#solution').val().trim() == "") {alert('الصق حل الوظيفة في الفراغ قبل الإرسال');return;}
-		if ($('#solution').val().length < 50) {alert('الحل قصير جدا! الصق حلا مفيدا');return;}
+		//if ($('#solution').val().length < 50) {alert('الحل قصير جدا! الصق حلا مفيدا');return;}
 		var studentname=$('#name').val();
 		var studentid=$('#sid').val();
 		var studentsolution=$('#solution').val();
