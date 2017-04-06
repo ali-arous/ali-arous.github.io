@@ -66,7 +66,7 @@
 	function submit() {
         if ($('#name').val().trim() == "") {alert('اكتب الاسم الثلاثي قبل الإرسال');return;}
 		if ($('#solution').val().trim() == "") {alert('الصق حل الوظيفة في الفراغ قبل الإرسال');return;}
-		//if ($('#solution').val().length < 50) {alert('الحل قصير جدا! الصق حلا مفيدا');return;}
+		if ($('#solution').val().length < 50) {alert('الحل قصير جدا! الصق حلا مفيدا');return;}
 		var studentname=$('#name').val();
 		var studentid=$('#sid').val();
 		var studentsolution=$('#solution').val();
@@ -85,8 +85,8 @@
                 },
 
                 success: function (response) {
-                  if(response.msg)
-				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">أنت صاحب الحل رقم: ( <span class="w3-text-blue w3-jumbo">'+response.msg+'</span>)</p></div>');
+                  if(response)
+				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">أنت صاحب الحل رقم: ( <span class="w3-text-blue w3-jumbo">'+response+'</span>)</p></div>');
                     
                   else{
                     $('#submit').html('إرسال');
