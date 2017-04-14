@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../jquery.min.js"></script>
+
+    <style>
+        @font-face {
+            font-family: myFirstFont;
+            src: url(../myfont.otf);
+            font-weight: bold;
+        }
+        body{
+            margin: 0;
+            padding:0;
+        }
+        div {
+            font-family: myFirstFont;
+        }
+        .module {
+            background:
+                    linear-gradient(
+                            rgba(0, 0, 0, 0.6),
+                            rgba(0, 0, 0, 0.6)
+                    ),
+                    url(../informatics.jpg);
+            background-size: cover;
+            /*width: 300px;
+            height: 200px;
+            margin: 10px 0 0 10px;*/
+            /*height: 0;
+            padding-bottom: 13em;
+            padding-top:3em;*/
+            position: relative;
+            float: left;
+        }
+
+    </style>
+    <title>
+       مقرر قواعد المعطيات
+    </title>
+    <style>
+        a {
+            text-decoration: none !important;
+        }
+    </style>
+    <style>
+        .cppcode {
+            font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+        }
+    </style>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-96941597-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<script>
+	function submit() {
+        if ($('#firstmember').val().trim() == "") {alert('اكتب الاسم الثلاثي للعضو الأول قبل الإرسال');return;}
+		if ($('#secondmember').val().trim() == "") {alert('اكتب الاسم الثلاثي للعضو الثاني قبل الإرسال');return;}
+		var member1=$('#firstmember').val();
+		var member2=$('#secondmember').val();
+		var teamname=$('#team').val();
+            $('#submit').html('جار تسجيل الفريق في قاعدة البيانات..');
+            $('#submit').prop("disabled",true);
+            $.ajax({
+                url: 'https://informatics.ga/registerteam',
+                type: 'POST',
+                cache: false,
+                data: {
+                    firstmember: member1,
+                    secondmember: member2,
+                    team: teamname,
+                },
+
+                success: function (response) {
+                  if(response)
+				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم تسجيل الفريق بنجاح!</p><p class="w3-center">الاسم التسلسلي للفريق: <span class="w3-text-blue w3-xxlarge">(Group'+response+')</span></p></div>');
+                    
+                  else{
+                    $('#submit').html('إرسال');
+                    $('#submit').prop("disabled",false);
+                    alert('حدث خطأ أثناء عملية الإرسال.. قم بتحديث الصفحة وإعادة الإرسال من جديد!');
+                  }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  alert('حدث خطأ أثناء الإرسال، تأكد من توفر اتصال بالانترنت وأعد تحميل الصفحة');
+              }
+
+            });
+       
+    }
+	</script>
+</head>
+<body dir='rtl' class='w3-light-grey'>
+<div id="fb-root"></div>
+<div class='w3-row w3-container w3-display-container' style='margin:0;padding:0;'>
+    <div class='w3-container module w3-center' style="width:100%; margin:0;display: table-cell !important; vertical-align: middle !important;">
+        <p class='w3-jumbo w3-text-white'>قواعد المعطيات</p>
+    </div>
+    <div class='w3-row'>
+
+        <div class="w3-container w3-blue w3-large w3-border">
+&nbsp;
+        </div>
+        <div class='w3-row' style='position:relative;'>
+            <div class='w3-col' style='width:10%;height:100%;'>
+                &nbsp;
+            </div>
+            <div class='w3-container w3-col' style="width:80%">
+                <p class='w3-xxxlarge w3-center w3-text-red' style='margin-bottom:0;'>المشروع</p>
+				<div id="homework">
+                <p class='w3-xlarge' style='margin-top:0;'>
+                يتم التسجيل على المشروع كفريق مكون من طالبين حصراً.</br>
+				يتم اختيار اسم للفريق باللغة الانكليزية، وفي حال تركه فارغا سيتم إعطاء اسم تسلسلي للمجموعة.
+                </p>
+				
+                <div id="form">
+                    <div class="w3-row">
+					    <div class="w3-col l4" style="padding-left:30px;">
+                        <label class='w3-text-blue w3-xlarge'> اسم الفريق:</label>
+                        <input id="team" placeholder="باللغة الانكليزية" class="w3-input w3-border w3-xlarge" type='text' name='team' class='w3-input' required pattern="[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FF ]+" title='أدخل اسم صحيح باللغة العربية'>
+                        </div>
+						
+						<div class="w3-col l4" style="padding-left:30px;">
+                        <label class='w3-text-blue w3-xlarge'>العضو الثاني:</label>
+                        <input id="secondmember" placeholder="الاسم الثلاثي" class="w3-input w3-border w3-xlarge" type='text' name='secondmember' class='w3-input' required pattern="[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FF ]+" title='أدخل اسم صحيح باللغة العربية'>
+                        </div>
+						
+                        <div class="w3-col l4" style="padding-left:30px;">
+                        <label class='w3-text-blue w3-xlarge'>العضو الأول:</label>
+                        <input id="firstmember" placeholder="الاسم الثلاثي" class="w3-input w3-border w3-xlarge" type='text' name='firstnumber' class='w3-input' required pattern="[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FF ]+" title='أدخل اسم صحيح باللغة العربية'>
+                        </div>						
+                    </div>
+					<div class="w3-row" style="text-align:center">
+						<button id="submit" class="w3-btn-block w3-green w3-xxlarge" style="margin-top:100px;max-width:50%" onclick="submit();"><b>تسجيل</b></button>
+					</div>
+                    <br>
+                    
+                    <input type="hidden" name="number" id="no" value="2" />
+
+                </div>
+				</div>
+            </div>
+
+            <div class='w3-col' style='width:10%;height:100%;'>
+&nbsp;
+            </div>
+        </div>
+    </div>
+    </br>
+    <div class="w3-container w3-center w3-blue">
+        <h6><a href='https://www.facebook.com/3li3rous' style='text-decoration: none !important;'>Eng. Ali Arous © 2017</a></h6>
+    </div>
+</body>
+</html>
