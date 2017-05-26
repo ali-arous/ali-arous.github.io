@@ -4,13 +4,13 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <script src="jquery.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../jquery.min.js"></script>
 
     <style>
         @font-face {
             font-family: myFirstFont;
-            src: url(myfont.otf);
+            src: url(../myfont.otf);
             font-weight: bold;
         }
         body{
@@ -26,7 +26,7 @@
                             rgba(0, 0, 0, 0.6),
                             rgba(0, 0, 0, 0.6)
                     ),
-                    url(informatics.jpg);
+                    url(../informatics.jpg);
             background-size: cover;
             /*width: 300px;
             height: 200px;
@@ -86,7 +86,7 @@
 
                 success: function (response) {
                   if(response)
-				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">أنت صاحب الحل رقم: ( <span class="w3-text-blue w3-jumbo">'+response+'</span>)</p></div>');
+				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">ترقب موعد المناقشة قريباً</p></div>');
                     
                   else{
                     $('#submit').html('إرسال');
@@ -120,7 +120,7 @@
                 &nbsp;
             </div>
             <div class='w3-container w3-col' style="width:80%">
-                <p class='w3-xxxlarge w3-center w3-text-red' style='margin-bottom:0;'>الوظيفة الثانية</p>
+                <p class='w3-xxxlarge w3-center w3-text-red' style='margin-bottom:0;'>الوظيفة الثالثة</p>
 				<div id="homework">
                 <p class='w3-xlarge' style='margin-top:0;'>
                  قم بلصق حلول الأسئلة، بعد ترقيم كل منها برقم الطلب مسبوقا برقم السؤال، واستخدم الفراغات مع الرموز الخاصة كـ (===) أو (***) لفصل الأجوبة عن بعضها ثم اضغط على زر إرسال.
@@ -141,7 +141,7 @@
                     <textarea id="solution" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="10" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
                     <br>
                     <button id="submit" class="w3-btn-block w3-green w3-xxlarge" onclick="submit();"><b>إرسال</b></button>
-                    <input type="hidden" name="number" id="no" value="2" />
+                    <input type="hidden" name="number" id="no" value="3" />
 
                 </div>
 				</div>
@@ -156,8 +156,5 @@
     <div class="w3-container w3-center w3-blue">
         <h6><a href='https://www.facebook.com/3li3rous' style='text-decoration: none !important;'>Eng. Ali Arous © 2017</a></h6>
     </div>
-	<!--<script>-->
-	<!--$('#homework').html('<div class="w3-panel w3-red w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">توقف استلام حلول الوظيفة!</p><p class="w3-center">بتاريخ 8/4/2017 الساعة 11:00 مساءاً </p></div>');-->
-	<!--</script>-->
 </body>
 </html>
