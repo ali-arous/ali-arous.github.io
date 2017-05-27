@@ -138,49 +138,8 @@
             &nbsp;
         </div>
         <div class='w3-container w3-col' style="width:80%">
-            <p class='w3-xxxlarge w3-center w3-text-red' style='margin-bottom:0;'>الوظيفة الرابعة</p>
-            <div id="homework">
-                <p class='w3-xlarge' style='margin-top:0;'>
-                    قم برسم المخطط على ورقة أو على الكمبيوتر واحفظ الحل على شكل صورة يوضع عليها اسمك الثلاثي بشكل واضح، ثم قم بتحميل الصورة من الزر الموافق للسؤال الأول، وقم بلصق حل السؤال الثاني في المكان الموافق له، ثم اضغط على زر إرسال.
-             </p>
-                <div id="form">
-                    <div class="w3-row">
-                        <div class="w3-col l4" style="padding-left:30px;">
-                            <label class='w3-text-blue w3-xlarge'>الرقم الجامعي:</label>
-                            <input id="sid" class="w3-input w3-border w3-xlarge" type='number' min='1' max='100000' name='sid' required>
-                        </div>
-
-                        <div class="w3-col l4" style="padding-left:30px;">
-                            <label class='w3-text-blue w3-xlarge'>الاسم الثلاثي (بالانكليزية):</label>
-                            <input id="ename" class="w3-input w3-border w3-xlarge" type='text' name='ename' class='w3-input'>
-                        </div>
-
-                        <div class="w3-col l4" style="padding-left:30px;">
-                            <label class='w3-text-blue w3-xlarge'>الاسم الثلاثي (بالعربية):</label>
-                            <input id="aname" class="w3-input w3-border w3-xlarge" type='text' name='fname' class='w3-input' required pattern="[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FF ]+" title='أدخل اسم صحيح باللغة العربية'>
-                        </div>
-
-                    </div>
-                    <label class='w3-text-blue w3-xlarge'>حل السؤال الأول:</label>
-                    <div class="form-wrap" style="margin-top:0;margin-bottom:0;padding-top:0">
-                        <h3>تحميل مخطط E-R Diagram</h3>
-                        <form action="https://informatics.ga/upload" method="post" enctype="multipart/form-data" id="upload_form">
-                            <input name="__files[]" type="file" multiple />
-                            <input name="__submit__" type="submit" value="تحميل"/>
-                            <input id="stename" name="stename" type="hidden"/>
-                        </form>
-                        <div id="progress-wrp"><div class="progress-bar"></div ><div class="status">0%</div></div>
-                        <div id="output">تم تحميل الصورة بنجاح!</div>
-                    </div>
-                    <label class='w3-text-blue w3-xlarge'>حل السؤال الثاني:</label>
-                    <textarea id="solution" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="10" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
-                    <br>
-                    <button id="submit" class="w3-btn-block w3-green w3-xxlarge" onclick="submit();"><b>إرسال</b></button>
-                    <input type="hidden" name="number" id="no" value="4" />
-
-                </div>
-
-            </div>
+            <p class='w3-xxxlarge w3-center w3-text-black' style='margin-bottom:0;'>الوظيفة الرابعة متاحة للتسليم على الرابط التالي:</p>
+			<a href="https://goo.gl/4HUD0q"><p class='w3-xxxlarge w3-center w3-text-pink' style='margin-bottom:0;'>https://goo.gl/4HUD0q</p></a>
         </div>
 
         <div class='w3-col' style='width:10%;height:100%;'>
@@ -189,6 +148,7 @@
     </div>
 </div>
 </br>
+</br></br></br></br>
 <div class="w3-container w3-center w3-blue">
     <h6><a href='https://www.facebook.com/3li3rous' style='text-decoration: none !important;'>Eng. Ali Arous ©
         2017</a></h6>
@@ -264,7 +224,7 @@
                     type: "POST",
                     data : form_data,
                     cache: false,
-                    //processData:false,
+                    processData:false,
                     xhr: function(){
                         //upload Progress
                         var xhr = $.ajaxSettings.xhr();
