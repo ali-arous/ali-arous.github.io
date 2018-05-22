@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../jquery.min.js"></script>
+
+    <style>
+        @font-face {
+            font-family: myFirstFont;
+            src: url(../myfont.otf);
+            font-weight: bold;
+        }
+        body{
+            margin: 0;
+            padding:0;
+        }
+        div {
+            font-family: time;
+        }
+        .module {
+            background:
+                    linear-gradient(
+                            rgba(0, 0, 0, 0.6),
+                            rgba(0, 0, 0, 0.6)
+                    ),
+                    url(../informatics.jpg);
+            background-size: cover;
+            /*width: 300px;
+            height: 200px;
+            margin: 10px 0 0 10px;*/
+            /*height: 0;
+            padding-bottom: 13em;
+            padding-top:3em;*/
+            position: relative;
+            float: left;
+        }
+
+    </style>
+    <title>
+       مقرر قواعد المعطيات
+    </title>
+    <style>
+        a {
+            text-decoration: none !important;
+        }
+    </style>
+    <style>
+        .cppcode {
+            font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+        }
+    </style>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-96941597-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<script>
+	function submit() {
+        if ($('#name').val().trim() == "") {alert('اكتب الاسم الثلاثي قبل الإرسال');return;}
+		if ($('#solution').val().trim() == "") {alert('الصق حل الوظيفة في الفراغ قبل الإرسال');return;}
+		if ($('#solution').val().length < 50) {alert('الحل قصير جدا! الصق حلا مفيدا');return;}
+		var studentname=$('#name').val();
+		var studentid=$('#sid').val();
+		var studentsolution=$('#solution').val();
+		var homeworknumber=$('#no').val();
+            $('#submit').html('جار إرسال الحل...');
+            $('#submit').prop("disabled",true);
+            $.ajax({
+                url: 'https://heartmonitor-sy.ml/submit',
+                type: 'POST',
+                cache: false,
+                data: {
+                    name: studentname,
+                    sid: studentid,
+                    solution: studentsolution,
+					no: homeworknumber
+                },
+
+                success: function (response) {
+                  if(response)
+				    $('#homework').html('<div class="w3-panel w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p></div>');
+                    
+                  else{
+                    $('#submit').html('إرسال');
+                    $('#submit').prop("disabled",false);
+                    alert('حدث خطأ أثناء عملية الإرسال.. قم بتحديث الصفحة وإعادة الإرسال من جديد!');
+                  }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  alert('حدث خطأ أثناء الإرسال، تأكد من توفر اتصال بالانترنت وأعد تحميل الصفحة');
+              }
+
+            });
+       
+    }
+	</script>
+
+</head>
+<body dir='rtl' class='w3-light-grey'>
+<div id="fb-root"></div>
+<!-- <div class='w3-row w3-container w3-display-container' style='margin:0;padding:0;'>
+    <div class='w3-container module w3-center' style="width:100%; margin:0;display: table-cell !important; vertical-align: middle !important;">
+        <p class='w3-jumbo w3-text-white'>قواعد المعطيات</p>
+    </div>
+</div> -->
+    <div class='w3-row'>
+
+        <div class="w3-container w3-large w3-border">
+&nbsp;
+        </div>
+        <div class='w3-row' style='position:relative;'>
+            <div class='w3-col' style='width:10%;height:100%;'>
+                &nbsp;
+            </div>
+            <div class='w3-container w3-col' style="width:80%" id="homework2">
+                <div class="w3-panel w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxxlarge w3-text-orange w3-center"><br><br><strong><a href="#" onclick="window.location.href='http://www.mediafire.com/file/qayry1appq913a4/DbDemo.rar'"><u>DbDemo.rar</u></a></strong><br><br></p></div>
+            </div>
+
+            <div class='w3-col' style='width:10%;height:100%;'>
+&nbsp;
+            </div>
+        </div>
+    </div>
+    </br>
+    <div class="w3-container w3-center">
+        <h6><a href='https://www.facebook.com/3li3rous' style='text-decoration: none !important;'>Eng. Ali Arous © 2018</a></h6>
+    </div>
+</body>
+</html>
