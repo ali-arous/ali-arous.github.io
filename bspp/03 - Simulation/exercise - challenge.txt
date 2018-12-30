@@ -1,0 +1,8 @@
+consider for a sample of size n (x1,...,xn iid ~ F or f)
+Assume that the supp(Xi) - [a,b]
+and then consider the histogram. of number B breaks
+for each of these rectangles
+
+find join distribution of this vector h = (h1, h2, ..., hB)
+
+and then compute the cov(hi, hj)

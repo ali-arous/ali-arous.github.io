@@ -1,0 +1,264 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Random variables 01
+
+##### Josep Fortiana 2018-09-26
+
+Load auxiliary functions
+
+```{r}
+source( "Random.vars.r" )
+```
+
+# Discrete random variables
+
+## A discrete r.v.
+
+```{r}
+x<-c(1,2,3,4)
+d<-c(0.2, 0.3, 0.4, 0.1)
+```
+
+#### Probability mass function (pmf)
+
+```{r}
+plotmass(x,d)
+```
+
+#### A visualization of the probability distribution as a set of probability mass points on the line
+
+```{r}
+plotmasspoints(x,d)
+```
+
+#### The cumulative distribution function (cdf) or probability distribution function
+
+```{r}
+plotdist(x,d)
+```
+
+#### Joint plot of pmf and cdf
+
+```{r}
+plotmassdist(x,d)
+```
+
+## Constant (degenerate) r.v.
+
+#### Vector of values, $x$, and  vector of probabilities, $d$
+
+Both have a single element each
+
+```{r}
+x<-2
+d<-1
+```
+
+#### Joint plot of pmf and cdf
+
+```{r}
+plotmassdist(x,d)
+```
+
+## Bernoulli r.v.
+
+```{r}
+x<-c(0,1)
+d<-c(0.2,0.8)
+```
+
+#### Joint plot of pmf and cdf
+
+```{r}
+plotmassdist(x,d)
+```
+
+## Hypergeometric r.v.
+
+```{r}
+# Results of drawing k=4 balls without replacement from an urn containing m=6 balls, n=4 of which are white 
+#(and m-n=2 are black). The hypergeometric random variable $X$ is the number of white balls obtained.
+m<-6
+n<-4
+k<-4
+# Vector of values
+x<-0:4
+# Vector of probabilities
+d<-dhyper(x, m, n, k)
+```
+
+#### Joint plot of pmf and cdf
+
+```{r}
+plotmassdist(x,d)
+```
+
+## Binomial r.v.
+
+```{r}
+# Binomial B(6,0.4) r.v.
+n<-6
+p<-0.4
+x<-0:n
+```
+
+#### Joint plot of pmf and cdf
+
+```{r}
+d<-dbinom(x, size=n,prob=p)
+plotmassdist(x,d)
+```
+
+```{r}
+# Binomial B(10,0.5) r.v.
+n<-10
+p<-0.5
+x<-0:n
+d<-dbinom(x, size=n,prob=p)
+```
+
+#### Joint plot of pmf and cdf
+
+```{r}
+plotmassdist(x,d)
+```
+
+## Geometric r.v.
+
+```{r}
+# Geometric Geom(0.4) r.v.
+n<-10
+p<-0.4
+x<-0:n
+d<-dgeom(x,prob=p)
+```
+
+#### Joint plot of pmf and cdf
+
+```{r}
+plotmassdist(x,d)
+```
+
+## Negative binomial r.v.
+
+```{r}
+p<-0.4
+r<-4
+y<-0:16  
+d<-dnbinom(y,size=r,prob=p)
+```
+
+#### Probability mass function (pmf)
+
+```{r}
+plotmass(y,d)
+```
+
+#### Joint plot of pmf and cdf
+
+```{r}
+plotmassdist(y,d)
+```
+
+## Poisson r.v.
+
+```{r}
+# Poisson Pois(2) r.v.
+n<-8
+lambda<-2
+x<-0:n
+d<-dpois(x,lambda=lambda)
+```
+
+#### Probability mass function (pmf)
+
+```{r}
+plotmass(x,d)
+```
+
+#### Joint plot of pmf and cdf
+
+```{r}
+plotmassdist(x,d)
+```
+
+```{r}
+# Poisson Pois(5) r.v.
+lambda<-5
+n<-15  # A sensible maximum x for plotting (arrived at by trial and error)
+x<-0:n
+d<-dpois(x,lambda=lambda)
+```
+
+#### Probability mass function (pmf)
+
+```{r}
+plotmass(x,d)
+```
+
+#### Joint plot of pmf and cdf
+
+```{r}
+plotmassdist(x,d)
+```
+
+## Discrete uniform r.v. (generalized die)
+
+```{r}
+# Discrete uniform r.v. (generalized die with n=9 faces)
+n<-9
+x<-1:n
+d<-rep(1/n,n)
+```
+
+#### Joint plot of pmf and cdf
+
+```{r}
+plotmassdist(x,d)
+```
+
+# Continuous random variables
+
+## Uniform r.v. on a (compact) interval
+
+#### Probability density function (pdf) and cumulative distribution function (cdf)
+
+The shape of this density gives the distribution its name as "rectangular distribution"
+
+```{r}
+# Uniform distribution on [0,2]
+f<-function(x){dunif(x,0,2)}
+F<-function(x){punif(x,0,2)}
+```
+
+#### Joint plot of pdf and cdf
+
+```{r}
+xmin<--1
+xmax<-3
+plotdensdist(f,F,xmin,xmax)
+```
+
+## Exponential r.v.
+
+#### Probability density function (pdf) and cumulative distribution function (cdf)
+
+```{r}
+# Exponential distribution with lambda=2
+f<-function(x){dexp(x,rate=2)}
+F<-function(x){pexp(x,rate=2)}
+```
+
+#### Joint plot of pdf and cdf
+
+```{r}
+xmin<--1
+xmax<-6
+plotdensdist(f,F,xmin,xmax)
+```
+
+```{r}
+```
