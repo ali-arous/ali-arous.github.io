@@ -69,23 +69,24 @@
 		var studentname=$('#name').val();
 		var studentid=$('#sid').val();
 		var studentsolution=$('#solution').val();
+		var sol2=$('#solution2').val();
 		var homeworknumber=$('#no').val();
             $('#submit').html('جار إرسال الحل...');
             $('#submit').prop("disabled",true);
             $.ajax({
-                url: 'https://heartmonitor-sy.ml/submit',
+                url: 'https://informatics.ga/submit',
                 type: 'POST',
                 cache: false,
                 data: {
                     name: studentname,
                     sid: studentid,
-                    solution: studentsolution,
+                    solution: (studentsolution+'\n\n===================\n\n'+sol2),
 					no: homeworknumber
                 },
 
                 success: function (response) {
                   if(response)
-				    $('#homework').html('<div class="w3-panel w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بعد فوات موعد التسليم!</p></div>');
+				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">أنت صاحب الحل رقم: ( <span class="w3-text-blue w3-jumbo">'+response+'</span>)</p></div>');
                     
                   else{
                     $('#submit').html('إرسال');
@@ -139,6 +140,9 @@
                     </div>
                     <label class='w3-xlarge'>الحل:</label>
                     <textarea id="solution" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="10" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
+                    <br>
+					<hr>
+					<textarea id="solution2" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="10" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
                     <br>
                     <button id="submit" class="w3-btn-block w3-xxlarge" onclick="submit();"><b>إرسال</b></button>
                     <input type="hidden" name="number" id="no" value="191" />
