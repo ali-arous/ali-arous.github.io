@@ -89,7 +89,7 @@
 
                 success: function (response) {
                   if(response)
-				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">رقم الإرسال: <span class="w3-text-darkred w3-xlarge">'+response+'</span></p></div>');
+				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">أنت صاحب الحل رقم: ( <span class="w3-text-blue w3-jumbo">'+response+'</span>)</p></div>');
                     
                   else{
                     $('#submit').html('إرسال');
@@ -162,11 +162,26 @@
 					<input id="name" class="w3-input w3-border w3-xlarge" type='text' name='fname' class='w3-input' required pattern="[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FF ]+" title='أدخل اسم صحيح باللغة العربية'>
 					</div>
 					
+					<div class="w3-col l12 m12 s12">
+                    <span class=' w3-xlarge'>اختر السؤال الذي تريد لصق الحل الخاص به:</span>
+                    <select class="w3-border w3-xlarge w3-select" name="sect" id = "sect" required>
+						<option value="1">السؤال الأول</option>
+						<option value="2">السؤال الثاني</option>
+						<option value="3">السؤال الثالث</option>
+						<option value="4">السؤال الرابع</option>
+						<option value="5">السؤال الخامس</option>
+						<option value="6">السؤال السادس</option>
+					  </select>
+					</div>
+					
                     </div>
                     <label class='w3-xlarge'>الحل:</label>
                     <textarea id="solution" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="10" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
                     <br>
 					<hr>
+					<button id="add" class="w3-btn-block w3-xxlarge" onclick="submit();"><b>إضافة حل جديد</b></button>
+					<br>
+					<br>
                     <button id="submit" class="w3-btn-block w3-xxlarge" onclick="submit();"><b>إرسال</b></button>
                     <input type="hidden" name="number" id="no" value="191" />
 
