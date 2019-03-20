@@ -64,13 +64,58 @@
 	<script>
 	function submit() {
         if ($('#name').val().trim() == "") {alert('اكتب الاسم الثلاثي قبل الإرسال');return;}
-		if ($('#solution').val().trim() == "") {alert('الصق حل الوظيفة في الفراغ قبل الإرسال');return;}
-		if ($('#solution').val().length < 50) {alert('الحل قصير جدا! الصق حلا مفيدا');return;}
 		var studentname=$('#name').val();
 		var studentid=$('#sid').val();
-		var studentsolution=$('#solution').val();
-		var sol2='';
-		var bodd = studentsolution+'\n\n===================\n\n'+sol2;
+		var sol1=$('#solution1').val();
+		var sol2=$('#solution2').val();
+		var sol3=$('#solution3').val();
+		var sol4=$('#solution4').val();
+		var sol5=$('#solution5').val();
+		var sol6=$('#solution6').val();
+		var bodd = '';
+		var slist = [];
+		if(sol1.trim() != ""){
+			slist.push(1);
+			bodd += '===================\n======== 1 ========\n===================\n\n'
+			bodd +=sol1;
+			bodd += '\n\n';
+		}	
+		if(sol2.trim() != ""){
+			slist.push(2);
+			bodd += '===================\n======== 2 ========\n===================\n\n'
+			bodd +=sol2;
+			bodd += '\n\n';
+		}
+		if(sol3.trim() != ""){
+			slist.push(3);
+			bodd += '===================\n======== 3 ========\n===================\n\n'
+			bodd +=sol3;
+			bodd += '\n\n';
+		}
+		if(sol4.trim() != ""){
+			slist.push(4);
+			bodd += '===================\n======== 4 ========\n===================\n\n'
+			bodd +=sol4;
+			bodd += '\n\n';
+		}		
+		if(sol5.trim() != ""){
+			slist.push(5);
+			bodd += '===================\n======== 5 ========\n===================\n\n'
+			bodd +=sol5;
+			bodd += '\n\n';
+		}
+		if(sol6.trim() != ""){
+			slist.push(6);
+			bodd += '===================\n======== 6 ========\n===================\n\n'
+			bodd +=sol6;
+			bodd += '\n\n';
+		}
+		var prefix = 'SUBMITTED: ';
+		slist.forEach(function(item, index, array) {
+		  prefix += item;
+		  if(index<slist.length) prefix += ',';
+		});
+		bodd = (prefix + '\n' + bodd);
 		var homeworknumber=$('#no').val();
 		var section = $('#sect').val();
             $('#submit').html('جار إرسال الحل...');
@@ -163,8 +208,21 @@
 					</div>
 					
                     </div>
-                    <label class='w3-xlarge'>الحل:</label>
-                    <textarea id="solution" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="10" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
+					</br>
+                    <label class='w3-xlarge'>حل التمرين 1:</label>
+                    <textarea id="solution1" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="5" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
+					<label class='w3-xlarge'>حل التمرين 2:</label>
+                    <textarea id="solution2" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="5" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
+					<label class='w3-xlarge'>حل التمرين 3:</label>
+                    <textarea id="solution3" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="5" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
+					<label class='w3-xlarge'>حل التمرين 4:</label>
+                    <textarea id="solution4" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="5" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
+					<label class='w3-xlarge'>حل التمرين 5:</label>
+                    <textarea id="solution5" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="5" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
+					<label class='w3-xlarge'>حل التمرين 6:</label>
+                    <textarea id="solution6" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="5" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
+  
+  
                     <br>
 					<hr>
                     <button id="submit" class="w3-btn-block w3-xxlarge" onclick="submit();"><b>إرسال</b></button>
