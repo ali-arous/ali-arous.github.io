@@ -89,7 +89,7 @@
 
                 success: function (response) {
                   if(response)
-				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">رقم الإرسال: <span class="w3-text-blue w3-jumbo">&#x23;'+response+'</span></p></div>');
+				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">رقم الإرسال: <span class="w3-text-blue w3-jumbo">'+response+'</span><span class="w3-text-red w3-jumbo">&#x23;</span></p></div>');
                     
                   else{
                     $('#submit').html('إرسال');
