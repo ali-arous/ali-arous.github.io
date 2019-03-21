@@ -39,7 +39,7 @@
 
     </style>
     <title>
-       تمرين
+       مقرر البرمجة2 - الوظيفة الأولى
     </title>
     <style>
         a {
@@ -64,13 +64,61 @@
 	<script>
 	function submit() {
         if ($('#name').val().trim() == "") {alert('اكتب الاسم الثلاثي قبل الإرسال');return;}
-		if ($('#solution').val().trim() == "") {alert('الصق حل الوظيفة في الفراغ قبل الإرسال');return;}
-		if ($('#solution').val().length < 50) {alert('الحل قصير جدا! الصق حلا مفيدا');return;}
 		var studentname=$('#name').val();
 		var studentid=$('#sid').val();
-		var studentsolution=$('#solution').val();
-		var sol2='';
-		var bodd = studentsolution+'\n\n===================\n\n'+sol2;
+		var sol1=$('#solution1').val();
+		var sol2=$('#solution2').val();
+		var sol3=$('#solution3').val();
+		var sol4=$('#solution4').val();
+		var sol5=$('#solution5').val();
+		var sol6=$('#solution6').val();
+		var bodd = '';
+		var slist = [];
+		if(sol1.trim() != ""){
+			slist.push(1);
+			bodd += '\n\n----------------/ 1 /----------------\n';
+			bodd +=sol1;
+			bodd += '\n';
+		}	
+		if(sol2.trim() != ""){
+			slist.push(2);
+			bodd += '\n\n----------------/ 2 /----------------\n';
+			bodd +=sol2;
+			bodd += '\n';
+		}
+		if(sol3.trim() != ""){
+			slist.push(3);
+			bodd += '\n\n----------------/ 3 /----------------\n';
+			bodd +=sol3;
+			bodd += '\n';
+		}
+		if(sol4.trim() != ""){
+			slist.push(4);
+			bodd += '\n\n----------------/ 4 /----------------\n';
+			bodd +=sol4;
+			bodd += '\n';
+		}		
+		if(sol5.trim() != ""){
+			slist.push(5);
+			bodd += '\n\n----------------/ 5 /----------------\n';
+			bodd +=sol5;
+			bodd += '\n';
+		}
+		if(sol6.trim() != ""){
+			slist.push(6);
+			bodd += '\n\n----------------/ 6 /----------------\n';
+			bodd +=sol6;
+			bodd += '\n';
+		}
+		var prefix = '--------------------------\n| SUBMITTED: ';
+		slist.forEach(function(item, index, array) {
+		  prefix += item;
+		  if(index<slist.length-1) prefix += ',';
+		});
+		var it = slist.length-1;
+		while(it<5){prefix += '  ';it++;}
+		prefix += ' |\n--------------------------';
+		bodd = (prefix + '\n' + bodd);
 		var homeworknumber=$('#no').val();
 		var section = $('#sect').val();
             $('#submit').html('جار إرسال الحل...');
@@ -89,12 +137,43 @@
 
                 success: function (response) {
                   if(response)
-				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">أنت صاحب الحل رقم: ( <span class="w3-text-blue w3-jumbo">'+response+'</span>)</p></div>');
+				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">رقم الإرسال: <span class="w3-text-blue w3-jumbo">'+response+'</span><span class="w3-text-red w3-jumbo">&#x23;</span></p></div>');
                     
                   else{
                     $('#submit').html('إرسال');
                     $('#submit').prop("disabled",false);
                     alert('حدث خطأ أثناء عملية الإرسال.. قم بتحديث الصفحة وإعادة الإرسال من جديد!');
+                  }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  alert('حدث خطأ أثناء الإرسال، تأكد من توفر اتصال بالانترنت وأعد تحميل الصفحة');
+              }
+
+            });
+       
+    }
+	var mylist =[];
+	function gonext(){
+		var stnum = $('#sid').val();
+		$.ajax({
+                url: 'https://heartmonitor-sy.ml/verify',
+                type: 'POST',
+                cache: false,
+                data: {
+                    sid: stnum,
+                },
+
+                success: function (response) {
+                  if(response==0)
+					console.log('response is cero');
+				    //$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">رقم الإرسال: <span class="w3-text-blue w3-jumbo">'+response+'</span><span class="w3-text-red w3-jumbo">&#x23;</span></p></div>');
+                    
+                  else{
+					console.log('Response is: \n');
+					console.log(response);
+                    //$('#submit').html('إرسال');
+                    //$('#submit').prop("disabled",false);
+                    //alert('حدث خطأ أثناء عملية الإرسال.. قم بتحديث الصفحة وإعادة الإرسال من جديد!');
                   }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -128,62 +207,24 @@
 				<div id="homework">
 				<hr>
                  <p class='w3-xlarge' style='margin-top:0;'>
-                 قم بلصق الحل بعد ترقيم الأجوبة وترك فواصل بينها من الشكل ( ====== )، ثم اضغط على زر إرسال.
+أدخل رقمك الجامعي ثم اضغط على زر "التالي"
 				 </p>
 				<hr>
                 <div id="form">
                     <div class="w3-row">
-
-                    <div class="w3-col l2 m12 s12">
-                    <label class=' w3-xlarge'>الفئة:</label>
-                    <select class="w3-border w3-xlarge w3-select" name="sect" id = "sect" required>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
-						<option value="12">12</option>
-					  </select>
-					</div>
-					
-                    <div class="w3-col l5 m12 s12" style="padding-left:2em">
+			
+                    <div class="w3-col l12 m12 s12" style="padding-left:2em">
                     <label class=' w3-xlarge'>الرقم الجامعي:</label>
+					
                     <input id="sid" class="w3-input w3-border w3-xlarge" type='number' min='1' max='100000' name='sid' required>
-                    </div>
-					
-					<div class="w3-col l5 m12 s12" style="padding-left:30px;">
-					<label class=' w3-xlarge'>الاسم الثلاثي:</label>
-					<input id="name" class="w3-input w3-border w3-xlarge" type='text' name='fname' class='w3-input' required pattern="[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FF ]+" title='أدخل اسم صحيح باللغة العربية'>
-					</div>
-					
-					<div class="w3-col l12 m12 s12">
-                    <span class=' w3-xlarge'>اختر السؤال الذي تريد لصق الحل الخاص به:</span>
-                    <select class="w3-border w3-xlarge w3-select" name="sect" id = "sect" required>
-						<option value="1">السؤال الأول</option>
-						<option value="2">السؤال الثاني</option>
-						<option value="3">السؤال الثالث</option>
-						<option value="4">السؤال الرابع</option>
-						<option value="5">السؤال الخامس</option>
-						<option value="6">السؤال السادس</option>
-					  </select>
-					</div>
-					
-                    </div>
-                    <label class='w3-xlarge'>الحل:</label>
-                    <textarea id="solution" dir='ltr' class="w3-input w3-border cppcode" type='textarea' rows="10" cols="50" name='ex1' placeholder="الصق الحل هنا"  required ></textarea>
                     <br>
-					<hr>
-					<button id="add" class="w3-btn-block w3-xxlarge" onclick="submit();"><b>إضافة حل جديد</b></button>
-					<br>
-					<br>
-                    <button id="submit" class="w3-btn-block w3-xxlarge" onclick="submit();"><b>إرسال</b></button>
-                    <input type="hidden" name="number" id="no" value="191" />
+					    <button id="next" class="w3-btn-block w3-xxlarge" onclick="gonext();"><b>التالي</b></button>
+					</div>
+					
+	
+					
+                    </div>
+					</br>
 
                 </div>
 				</div>
