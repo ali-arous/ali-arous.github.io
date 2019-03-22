@@ -62,6 +62,7 @@
 
 	</script>
 	<script>
+	var first = true;
 	function submit() {
         if ($('#name').val().trim() == "") {alert('اكتب الاسم الثلاثي قبل الإرسال');return;}
 		var studentname=$('#name').val();
@@ -74,37 +75,37 @@
 		var sol6=$('#solution6').val();
 		var bodd = '';
 		var slist = [];
-		if(sol1.trim() != ""){
+		if(sol1 && sol1.trim() != ""){
 			slist.push(1);
 			bodd += '\n\n----------------/ 1 /----------------\n';
 			bodd +=sol1;
 			bodd += '\n';
 		}	
-		if(sol2.trim() != ""){
+		if(sol2 && sol2.trim() != ""){
 			slist.push(2);
 			bodd += '\n\n----------------/ 2 /----------------\n';
 			bodd +=sol2;
 			bodd += '\n';
 		}
-		if(sol3.trim() != ""){
+		if(sol3 && sol3.trim() != ""){
 			slist.push(3);
 			bodd += '\n\n----------------/ 3 /----------------\n';
 			bodd +=sol3;
 			bodd += '\n';
 		}
-		if(sol4.trim() != ""){
+		if(sol4 && sol4.trim() != ""){
 			slist.push(4);
 			bodd += '\n\n----------------/ 4 /----------------\n';
 			bodd +=sol4;
 			bodd += '\n';
 		}		
-		if(sol5.trim() != ""){
+		if(sol5 && sol5.trim() != ""){
 			slist.push(5);
 			bodd += '\n\n----------------/ 5 /----------------\n';
 			bodd +=sol5;
 			bodd += '\n';
 		}
-		if(sol6.trim() != ""){
+		if(sol6 && sol6.trim() != ""){
 			slist.push(6);
 			bodd += '\n\n----------------/ 6 /----------------\n';
 			bodd +=sol6;
@@ -123,8 +124,13 @@
 		var section = $('#sect').val();
             $('#submit').html('جار إرسال الحل...');
             $('#submit').prop("disabled",true);
+			var uri ='';
+			if(first) 
+				uri = 'https://heartmonitor-sy.ml/submit';
+			else
+				uri = 'https://heartmonitor-sy.ml/update';
             $.ajax({
-                url: 'https://heartmonitor-sy.ml/submit',
+                url: uri,
                 type: 'POST',
                 cache: false,
                 data: {
@@ -137,8 +143,10 @@
 
                 success: function (response) {
                   if(response)
-				    $('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">رقم الإرسال: <span class="w3-text-blue w3-jumbo">'+response+'</span><span class="w3-text-red w3-jumbo">&#x23;</span></p></div>');
-                    
+					if(first)
+						$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">رقم الإرسال: <span class="w3-text-blue w3-jumbo">'+response+'</span><span class="w3-text-red w3-jumbo">&#x23;</span></p></div>');
+                    else 
+						$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">تم استكمال الحل بنجاح!</p>'+'</div>');
                   else{
                     $('#submit').html('إرسال');
                     $('#submit').prop("disabled",false);
@@ -166,12 +174,23 @@
 
                 success: function (response) {
                   if(response==0)
-					console.log('response is cero');
-				    //$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">رقم الإرسال: <span class="w3-text-blue w3-jumbo">'+response+'</span><span class="w3-text-red w3-jumbo">&#x23;</span></p></div>');
-                    
+				    $('#homework').html('<hr> <p class="w3-xlarge" style="margin-top:0;"> قم بلصق الحل الموافق لكل تمرين في المكان المخصص، ثم اضغط على زر "إرسال". </p><hr> <div id="form"> <div class="w3-row"> <div class="w3-col l2 m12 s12"> <label class=" w3-xlarge">الفئة:</label> <select class="w3-border w3-xlarge w3-select" name="sect" id = "sect" required><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option> </select></div> <div class="w3-col l5 m12 s12" style="padding-left:2em"> <label class=" w3-xlarge">الرقم الجامعي:</label> <input id="sid" class="w3-input w3-border w3-xlarge" type="number" min="1" max="100000" name="sid" value="'+stnum+'" disabled> </div><div class="w3-col l5 m12 s12" style="padding-left:30px;"><label class=" w3-xlarge">الاسم الثلاثي:</label><input id="name" class="w3-input w3-border w3-xlarge" type="text" name="fname" class="w3-input" required pattern="[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FF ]+" title="أدخل اسم صحيح باللغة العربية"></div> </div></br> <label class="w3-xlarge">حل التمرين 1:</label> <textarea id="solution1" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required ></textarea><label class="w3-xlarge">حل التمرين 2:</label> <textarea id="solution2" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required ></textarea><label class="w3-xlarge">حل التمرين 3:</label> <textarea id="solution3" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required ></textarea><label class="w3-xlarge">حل التمرين 4:</label> <textarea id="solution4" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required ></textarea><label class="w3-xlarge">حل التمرين 5:</label> <textarea id="solution5" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required ></textarea><label class="w3-xlarge">حل التمرين 6:</label> <textarea id="solution6" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required ></textarea> <br><hr> <button id="submit" class="w3-btn-block w3-xxlarge" onclick="submit();"><b>إرسال</b></button> <input type="hidden" name="number" id="no" value="191" /> </div>');
                   else{
-					console.log('Response is: \n');
-					console.log(response);
+					first=false;
+					mylist = response.list;
+					var obj = response.obj;
+					if(mylist.length==6){
+					console.log('hahaha');
+						$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال جميع الأسئلة بنجاح!</p>'+'</div>');
+						
+					}else{
+						var s = '<hr><p class="w3-xlarge" style="margin-top:0;"> قم بلصق الحل الموافق لكل تمرين في المكان المخصص، ثم اضغط على زر "إرسال". </p><hr> <div id="form"> <div class="w3-row"> <div class="w3-col l2 m12 s12"> <label class=" w3-xlarge">الفئة:</label><input id="name" class="w3-input w3-border w3-xlarge" type="text" value="'+obj.sect+'" class="w3-input" disabled></div> <div class="w3-col l5 m12 s12" style="padding-left:2em"> <label class=" w3-xlarge">الرقم الجامعي:</label> <input id="sid" class="w3-input w3-border w3-xlarge" type="number" min="1" max="100000" value="'+obj.sid+'" disabled> </div><div class="w3-col l5 m12 s12" style="padding-left:30px;"><label class=" w3-xlarge">الاسم الثلاثي:</label><input id="name" class="w3-input w3-border w3-xlarge" type="text" name="fname" value="'+obj.name+'" class="w3-input" required pattern="[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FF ]+" title="أدخل اسم صحيح باللغة العربية" disabled></div> </div></br><div>';
+					for(var i=1; i<=6; i++)
+						if(!mylist.includes(i))
+							s+='<label class="w3-xlarge">حل التمرين '+i.toString(10)+':</label><textarea id="solution'+i.toString(10)+'" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا"  required ></textarea>';
+					s+='<br><hr><button id="submit" class="w3-btn-block w3-xxlarge" onclick="submit();"><b>إرسال</b></button><input type="hidden" name="number" id="no" value="191" /></div>';
+					$('#homework').html(s);
+					};
                     //$('#submit').html('إرسال');
                     //$('#submit').prop("disabled",false);
                     //alert('حدث خطأ أثناء عملية الإرسال.. قم بتحديث الصفحة وإعادة الإرسال من جديد!');
@@ -205,6 +224,7 @@
             </div>
             <div class='w3-container w3-col' style="width:80%" id="homework2">
 				<p class='w3-xxlarge w3-center ' style='margin-bottom:0;'><strong>مقرر البرمجة2 - الوظيفة الأولى</strong></p>
+				<div id="gg"></div>
 				<div id="homework">
 				<hr>
                  <p class='w3-xlarge' style='margin-top:0;'>
