@@ -65,6 +65,8 @@
 	var first = true;
 	function submit() {
         if ($('#name').val().trim() == "") {alert('اكتب الاسم الثلاثي قبل الإرسال');return;}
+		$('#submit').html('جار إرسال الحل...');
+        $('#submit').prop("disabled",true);
 		var studentname=$('#name').val();
 		var studentid=$('#sid').val();
 		var sol1=$('#solution1').val();
@@ -122,8 +124,6 @@
 		bodd = (prefix + '\n' + bodd);
 		var homeworknumber=$('#no').val();
 		var section = $('#sect').val();
-            $('#submit').html('جار إرسال الحل...');
-            $('#submit').prop("disabled",true);
 			var uri ='';
 			if(first) 
 				uri = 'https://heartmonitor-sy.ml/submit';
@@ -162,6 +162,8 @@
     }
 	var mylist =[];
 	function gonext(){
+		$('#next').html('انتظر قليلا..');
+        $('#next').prop("disabled",true);
 		var stnum = $('#sid').val();
 		console.log(stnum);
 		$.ajax({
