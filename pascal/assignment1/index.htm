@@ -65,16 +65,17 @@
 	var first = true;
 	function submit() {
         if ($('#name').val().trim() == "") {alert('اكتب الاسم الثلاثي قبل الإرسال');return;}
-		$('#submit').html('جار إرسال الحل...');
+		$('#submit').html('جارٍ إرسال الحل...');
         $('#submit').prop("disabled",true);
 		var studentname=$('#name').val();
 		var studentid=$('#sid').val();
-		var sol1=$('#solution1').val();
-		var sol2=$('#solution2').val();
-		var sol3=$('#solution3').val();
-		var sol4=$('#solution4').val();
-		var sol5=$('#solution5').val();
-		var sol6=$('#solution6').val();
+		var blanks=0;
+		var sol1=$('#solution1').val(); if(sol1)blanks++;
+		var sol2=$('#solution2').val();	if(sol2)blanks++;
+		var sol3=$('#solution3').val();	if(sol3)blanks++;
+		var sol4=$('#solution4').val();	if(sol4)blanks++;
+		var sol5=$('#solution5').val();	if(sol5)blanks++;
+		var sol6=$('#solution6').val();	if(sol6)blanks++;
 		var bodd = '';
 		var slist = [];
 		if(sol1 && sol1.trim() != ""){
@@ -146,6 +147,10 @@
 					if(first)
 						$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">رقم الإرسال: <span class="w3-text-blue w3-jumbo">'+response+'</span><span class="w3-text-red w3-jumbo">&#x23;</span></p></div>');
                     else 
+					if(slist.length == blanks)
+						$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال جميع الأسئلة بنجاح!</p>'+'</div>');
+
+					else
 						$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">تم استكمال الحل بنجاح!</p>'+'</div>');
                   else{
                     $('#submit').html('إرسال');
@@ -182,7 +187,7 @@
 					mylist = response.list;
 					var obj = response.obj;
 					if(mylist.length==6){
-					console.log('hahaha');
+
 						$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال جميع الأسئلة بنجاح!</p>'+'</div>');
 						
 					}else{
