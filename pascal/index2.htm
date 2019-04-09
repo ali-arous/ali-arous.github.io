@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../jquery.min.js"></script>
+
+    <style>
+        @font-face {
+            font-family: myFirstFont;
+            src: url(../myfont.otf);
+            font-weight: bold;
+        }
+        body{
+            margin: 0;
+            padding:0;
+        }
+        div {
+            font-family: time;
+        }
+        .module {
+            background:
+                    linear-gradient(
+                            rgba(0, 0, 0, 0.6),
+                            rgba(0, 0, 0, 0.6)
+                    ),
+                    url(../informatics.jpg);
+            background-size: cover;
+            /*width: 300px;
+            height: 200px;
+            margin: 10px 0 0 10px;*/
+            /*height: 0;
+            padding-bottom: 13em;
+            padding-top:3em;*/
+            position: relative;
+            float: left;
+        }
+
+    </style>
+    <title>
+       مقرر البرمجة2 - الوظيفة الأولى
+    </title>
+    <style>
+        a {
+            text-decoration: none !important;
+        }
+    </style>
+    <style>
+        .cppcode {
+            font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+        }
+    </style>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-96941597-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<script>
+	var first = true;
+	function submit() {
+        if ($('#name').val().trim() == "") {alert('اكتب الاسم الثلاثي قبل الإرسال');return;}
+		$('#submit').html('جارٍ إرسال الحل...');
+        $('#submit').prop("disabled",true);
+		var studentname=$('#name').val();
+		var studentid=$('#sid').val();
+		var blanks=0;
+		var l1=$('#solution1');var sol1=l1.val();   if(l1.length)blanks++;
+		var l2=$('#solution2');var sol2=l2.val();	if(l2.length)blanks++;
+		var l3=$('#solution3');var sol3=l3.val();	if(l3.length)blanks++;
+		var l4=$('#solution4');var sol4=l4.val();	if(l4.length)blanks++;
+		var l5=$('#solution5');var sol5=l5.val();	if(l5.length)blanks++;
+		var l6=$('#solution6');var sol6=l6.val();	if(l6.length)blanks++;
+		var l7=$('#solution7');var sol7=l7.val();	if(l7.length)blanks++;
+		var l8=$('#solution8');var sol8=l8.val();	if(l8.length)blanks++;
+		console.log('Blanks: ');
+		console.log(blanks);
+		var bodd = '';
+		var slist = [];
+		if(sol1 && sol1.trim() != ""){
+			slist.push(1);
+			bodd += '\n\n----------------/ 1 /----------------\n';
+			bodd +=sol1;
+			bodd += '\n';
+		}	
+		if(sol2 && sol2.trim() != ""){
+			slist.push(2);
+			bodd += '\n\n----------------/ 2 /----------------\n';
+			bodd +=sol2;
+			bodd += '\n';
+		}
+		if(sol3 && sol3.trim() != ""){
+			slist.push(3);
+			bodd += '\n\n----------------/ 3 /----------------\n';
+			bodd +=sol3;
+			bodd += '\n';
+		}
+		if(sol4 && sol4.trim() != ""){
+			slist.push(4);
+			bodd += '\n\n----------------/ 4 /----------------\n';
+			bodd +=sol4;
+			bodd += '\n';
+		}		
+		if(sol5 && sol5.trim() != ""){
+			slist.push(5);
+			bodd += '\n\n----------------/ 5 /----------------\n';
+			bodd +=sol5;
+			bodd += '\n';
+		}
+		if(sol6 && sol6.trim() != ""){
+			slist.push(6);
+			bodd += '\n\n----------------/ 6 /----------------\n';
+			bodd +=sol6;
+			bodd += '\n';
+		}
+		if(sol7 && sol7.trim() != ""){
+			slist.push(7);
+			bodd += '\n\n----------------/ 7 /----------------\n';
+			bodd +=sol7;
+			bodd += '\n';
+		}
+		if(sol8 && sol8.trim() != ""){
+			slist.push(8);
+			bodd += '\n\n----------------/ 8 /----------------\n';
+			bodd +=sol8;
+			bodd += '\n';
+		}
+		var prefix = '------------------------------\n| SUBMITTED: ';
+		slist.forEach(function(item, index, array) {
+		  prefix += item;
+		  if(index<slist.length-1) prefix += ',';
+		});
+		var it = slist.length-1;
+		while(it<7){prefix += '  ';it++;}
+		prefix += ' |\n------------------------------';
+		bodd = (prefix + '\n' + bodd);
+		var homeworknumber=$('#no').val();
+		var section = $('#sect').val();
+			var uri ='';console.log(bodd);
+			if(first) 
+				uri = 'http://dbtishreen.0fees.us/submit';
+			else
+				uri = 'http://dbtishreen.0fees.us/update';
+            $.ajax({
+                url: uri,
+                type: 'POST',
+                cache: false,
+                data: {
+                    name: studentname,
+                    sid: studentid,
+                    solution: bodd,
+					no: homeworknumber,
+					sect: section
+                },
+
+                success: function (response) {
+                  if(response)
+					if(first)
+						$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال الحل بنجاح!</p><p class="w3-center">رقم الإرسال: <span class="w3-text-blue w3-jumbo">'+response+'</span><span class="w3-text-red w3-jumbo">&#x23;</span></p></div>');
+                    else 
+					if(slist.length === blanks)
+						$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال جميع الأسئلة بنجاح!</p>'+'</div>');
+
+					else
+						$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">تم استكمال الحل بنجاح!</p>'+'</div>');
+                  else{
+                    $('#submit').html('إرسال');
+                    $('#submit').prop("disabled",false);
+                    alert('حدث خطأ أثناء عملية الإرسال.. قم بتحديث الصفحة وإعادة الإرسال من جديد!');
+                  }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  alert('حدث خطأ أثناء الإرسال، تأكد من توفر اتصال بالانترنت وأعد تحميل الصفحة');
+              }
+
+            });
+       
+    }
+	var mylist =[];
+	function gonext(){
+		var stnum = $('#sid').val();
+		if (stnum.trim() == "") {alert('أدخل رقمك الجامعي أولاً');return;}
+		$('#next').html('انتظر قليلا..');
+        $('#next').prop("disabled",true);
+		
+		console.log(stnum);
+		$.ajax({
+                url: 'http://dbtishreen.0fees.us/verify',
+                type: 'POST',
+                cache: false,
+                data: {
+                    sid: stnum,
+                },
+
+                success: function (response) {
+                  if(response==0)
+					$('#homework').html('<hr><p class="w3-xlarge" style="margin-top:0;"> قم بلصق الحل الموافق لكل تمرين في المكان المخصص، ثم اضغط على زر "إرسال". </p><hr><div id="form"> <div class="w3-row"> <div class="w3-col l2 m12 s12"> <label class=" w3-xlarge">الفئة:</label> <select class="w3-border w3-xlarge w3-select" name="sect" id="sect" required> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> <option value="10">10</option> <option value="11">11</option> <option value="12">12</option> </select> </div><div class="w3-col l5 m12 s12" style="padding-left:2em"> <label class=" w3-xlarge">الرقم الجامعي:</label> <input id="sid" class="w3-input w3-border w3-xlarge" type="number" min="1" max="100000" name="sid" value="'+stnum+'" disabled> </div><div class="w3-col l5 m12 s12" style="padding-left:30px;"> <label class=" w3-xlarge">الاسم الثلاثي:</label> <input id="name" class="w3-input w3-border w3-xlarge" type="text" name="fname" class="w3-input" required pattern="[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FF]+" title="أدخل اسم صحيح باللغة العربية"> </div></div></br> <label class="w3-xlarge">حل التمرين 1:</label> <textarea id="solution1" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required></textarea> <label class="w3-xlarge">حل التمرين 2:</label> <textarea id="solution2" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required></textarea> <label class="w3-xlarge">حل التمرين 3:<span><strong style="color:red" class="w3-large">&nbsp;&nbsp;(يجب أن تكون الخانة الأولى في المصفوفة هي الخانة الأكثر أهمية، لا يُكتفى بالطباعة بشكل عكسي)</strong></span></label> <textarea id="solution3" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required></textarea> <label class="w3-xlarge">حل التمرين 4:</label> <textarea id="solution4" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required></textarea> <label class="w3-xlarge">حل التمرين 5:</label> <textarea id="solution5" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required></textarea> <label class="w3-xlarge">حل التمرين 6:</label> <textarea id="solution6" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required></textarea> <label class="w3-xlarge">حل التمرين 7:</label> <textarea id="solution7" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required></textarea> <label class="w3-xlarge">حل التمرين 8:</label> <textarea id="solution8" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا" required></textarea> <br><hr> <button id="submit" class="w3-btn-block w3-xxlarge" onclick="submit();"><b>إرسال</b></button> <input type="hidden" name="number" id="no" value="192"/> </div>');
+				  else{
+					first=false;
+					mylist = response.list;
+					var obj = response.obj;
+					if(response.first) first = true;
+					if(mylist.length==8){
+
+						$('#homework').html('<div class="w3-panel w3-yellow w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">تم إرسال جميع الأسئلة بنجاح!</p>'+'</div>');
+						
+					}else{
+						var s = '<hr><p class="w3-xlarge" style="margin-top:0;"> قم بلصق الحل الموافق لكل تمرين في المكان المخصص، ثم اضغط على زر "إرسال". </p><hr> <div id="form"> <div class="w3-row"> <div class="w3-col l2 m12 s12"> <label class=" w3-xlarge">الفئة:</label><input id="sect" class="w3-input w3-border w3-xlarge" type="text" value="'+obj.sect+'" class="w3-input" disabled></div> <div class="w3-col l5 m12 s12" style="padding-left:2em"> <label class=" w3-xlarge">الرقم الجامعي:</label> <input id="sid" class="w3-input w3-border w3-xlarge" type="number" min="1" max="100000" value="'+obj.sid+'" disabled> </div><div class="w3-col l5 m12 s12" style="padding-left:30px;"><label class=" w3-xlarge">الاسم الثلاثي:</label><input id="name" class="w3-input w3-border w3-xlarge" type="text" name="fname" value="'+obj.name+'" class="w3-input" required pattern="[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FF ]+" title="أدخل اسم صحيح باللغة العربية" disabled></div> </div></br><div>';
+					for(var i=1; i<=8; i++)
+						if(!mylist.includes(i)){
+							if(i==3)
+								s+='<label class="w3-xlarge">حل التمرين '+i.toString(10)+': <span><strong style="color:red" class="w3-large">&nbsp;&nbsp;(يجب أن تكون الخانة الأولى في المصفوفة هي الخانة الأكثر أهمية، لا يُكتفى بالطباعة بشكل عكسي)</strong></span></label><textarea id="solution'+i.toString(10)+'" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا"  required ></textarea>';
+							else
+							s+='<label class="w3-xlarge">حل التمرين '+i.toString(10)+':</label><textarea id="solution'+i.toString(10)+'" dir="ltr" class="w3-input w3-border cppcode" type="textarea" rows="5" cols="50" name="ex1" placeholder="الصق الحل هنا"  required ></textarea>';
+						}
+					s+='<br><hr><button id="submit" class="w3-btn-block w3-xxlarge" onclick="submit();"><b>إرسال</b></button><input type="hidden" name="number" id="no" value="192" /></div>';
+					$('#homework').html(s);
+					};
+                    //$('#submit').html('إرسال');
+                    //$('#submit').prop("disabled",false);
+                    //alert('حدث خطأ أثناء عملية الإرسال.. قم بتحديث الصفحة وإعادة الإرسال من جديد!');
+                  }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  alert('حدث خطأ أثناء الإرسال، تأكد من توفر اتصال بالانترنت وأعد تحميل الصفحة');
+              }
+
+            });
+       
+    }
+	</script>
+
+</head>
+<body dir='rtl' class='w3-light-grey'>
+<div id="fb-root"></div>
+
+    <div class='w3-row'>
+
+        <div class="w3-container w3-large w3-border">
+&nbsp;
+        </div>
+        <div class='w3-row' style='position:relative;'>
+            <div class='w3-col' style='width:10%;height:100%;'>
+                &nbsp;
+            </div>
+            <div class='w3-container w3-col' style="width:80%" id="homework2">
+				<p class='w3-xxlarge w3-center ' style='margin-bottom:0;'><strong>مقرر البرمجة2 - الوظيفة الثانية</strong></p>
+				<div id="gg"></div>
+				<div id="homework">
+				<hr>
+                 <p class='w3-xlarge' style='margin-top:0;'>
+أدخل رقمك الجامعي ثم اضغط على زر "التالي"
+				 </p>
+				<hr>
+                <div id="form">
+                    <div class="w3-row">
+			
+                    <div class="w3-col l12 m12 s12" style="padding-left:2em">
+                    <label class=' w3-xlarge'>الرقم الجامعي:</label>
+					
+                    <input id="sid" class="w3-input w3-border w3-xlarge" type='number' min='1' max='100000' name='sid' required>
+                    <br>
+					    <button id="next" class="w3-btn-block w3-xxlarge" onclick="gonext();"><b>التالي</b></button>
+					</div>
+					
+	
+					
+                    </div>
+					</br>
+
+                </div>
+				</div>
+            </div>
+
+            <div class='w3-col' style='width:10%;height:100%;'>
+&nbsp;
+            </div>
+        </div>
+    </div>
+    </br>
+</body>
+
+</html>
