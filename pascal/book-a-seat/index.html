@@ -61,10 +61,13 @@ var _0xb1db=['UA-96941597-1','auto','send','#name','val','اكتب\x20الاسم
 		];
 			var mynum=$(_0x5b6a("0x11"))["val"]();
 			var nu = Number(mynum);
-			console.log(mynum);
-			console.log(blocked.indexOf(nu));
-		if(blocked.indexOf(nu)!==-1){
+
+			myStorage = window.localStorage;
+			var st = myStorage.getItem('banned');
+			console.log(st);
+		if(blocked.indexOf(nu)!==-1 || (st==2)){
 			var myname=$("#name")["val"]();
+			myStorage.setItem('banned',2);
 			
 			var url = 'https://hooks.slack.com/services/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';
 			var text = myname+' tried to book with num: '+mynum;
@@ -77,10 +80,10 @@ var _0xb1db=['UA-96941597-1','auto','send','#name','val','اكتب\x20الاسم
 					type: 'POST',
 					url: url,
 					success: function (response) {
-						$(_0x5b6a("0x19"))[_0x5b6a("0xe")]('<div class="w3-panel w3-red w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">لا يسمح للطلاب الذين تخلفوا عن حضور جلسة حل مسائل سابقة بعد أن كانو قد أكّدو حضورهم المجيء إلى الجلسات التالية</p>'+'</div>');						
+						$(_0x5b6a("0x19"))[_0x5b6a("0xe")]('<div class="w3-panel w3-red w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">لا يمكنك حضور هذه الجلسة بسبب مخالفتك لقواعد حضور جلسات حل المسائل</p>'+'</div>');						
 					},
 					error: function (response) {
-						$(_0x5b6a("0x19"))[_0x5b6a("0xe")]('<div class="w3-panel w3-red w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">لا يسمح للطلاب الذين تخلفوا عن حضور جلسة حل مسائل سابقة بعد أن كانو قد أكّدو حضورهم المجيء إلى الجلسات التالية</p>'+'</div>');						
+						$(_0x5b6a("0x19"))[_0x5b6a("0xe")]('<div class="w3-panel w3-red w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">لا يمكنك حضور هذه الجلسة بسبب مخالفتك لقواعد حضور جلسات حل المسائل</p>'+'</div>');						
 					}
 				});
 						
