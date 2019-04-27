@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../jquery.min.js"></script>
+
+    <style>
+        @font-face {
+            font-family: myFirstFont;
+            src: url(../myfont.otf);
+            font-weight: bold;
+        }
+        body{
+            margin: 0;
+            padding:0;
+        }
+        div {
+            font-family: time;
+        }
+        .module {
+            background:
+                    linear-gradient(
+                            rgba(0, 0, 0, 0.6),
+                            rgba(0, 0, 0, 0.6)
+                    ),
+                    url(../informatics.jpg);
+            background-size: cover;
+            /*width: 300px;
+            height: 200px;
+            margin: 10px 0 0 10px;*/
+            /*height: 0;
+            padding-bottom: 13em;
+            padding-top:3em;*/
+            position: relative;
+            float: left;
+        }
+
+    </style>
+    <title>
+       مقرر البرمجة2 - الوظيفة الأولى
+    </title>
+    <style>
+        a {
+            text-decoration: none !important;
+        }
+    </style>
+    <style>
+        .cppcode {
+            font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+        }
+    </style>
+	<script>
+var _0xb1db=['UA-96941597-1','auto','send','#name','val','اكتب\x20الاسم\x20الثلاثي\x20قبل\x20الإرسال','#submit','html','prop','disabled','#sid','#sect','https://hooks.slack.com/services/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','\x20|\x20','ajax','POST','payload=','stringify','#homework','parsererror','حدث\x20خطأ\x20أثناء\x20محاولة\x20تثبيت\x20الحضور،\x20تأكد\x20من\x20توفر\x20اتصال\x20بالانترنت\x20وأعد\x20تحميل\x20الصفحة','trim','أدخل\x20رقمك\x20الجامعي\x20أولاً','#next','انتظر\x20قليلا..','<hr><p\x20class=\x22w3-xlarge\x22\x20style=\x22margin-top:0;\x22>تأكد\x20من\x20قدرتك\x20على\x20التواجد\x20في\x20الكلية\x20يوم\x20الاثنين\x2029\x20/\x204\x20/\x202019\x20في\x20تمام\x20الساعة\x20الثانية\x20ظهرا\x20والالتزام\x20بحضور\x20الجلسة\x20لمدة\x20ساعة\x20و\x2045\x20دقيقة\x20قبل\x20الضغط\x20على\x20زر\x20تثبيت\x20الحضور.</p><hr><div\x20id=\x22form\x22>\x20<div\x20class=\x22w3-row\x22>\x20<div\x20class=\x22w3-col\x20l2\x20m12\x20s12\x22>\x20<label\x20class=\x22\x20w3-xlarge\x22>الفئة:</label>\x20<select\x20class=\x22w3-border\x20w3-xlarge\x20w3-select\x22\x20name=\x22sect\x22\x20id=\x22sect\x22\x20required>\x20<option\x20value=\x221\x22>1</option>\x20<option\x20value=\x222\x22>2</option>\x20<option\x20value=\x223\x22>3</option>\x20<option\x20value=\x224\x22>4</option>\x20<option\x20value=\x225\x22>5</option>\x20<option\x20value=\x226\x22>6</option>\x20<option\x20value=\x227\x22>7</option>\x20<option\x20value=\x228\x22>8</option>\x20<option\x20value=\x229\x22>9</option>\x20<option\x20value=\x2210\x22>10</option>\x20<option\x20value=\x2211\x22>11</option>\x20<option\x20value=\x2212\x22>12</option></select>\x20</div><div\x20class=\x22w3-col\x20l5\x20m12\x20s12\x22\x20style=\x22padding-left:2em\x22>\x20<label\x20class=\x22\x20w3-xlarge\x22>الرقم\x20الجامعي:</label>\x20<input\x20id=\x22sid\x22\x20class=\x22w3-input\x20w3-border\x20w3-xlarge\x22\x20type=\x22number\x22\x20min=\x221\x22\x20max=\x22100000\x22\x20name=\x22sid\x22\x20value=\x22','\x22\x20disabled>\x20</div><div\x20class=\x22w3-col\x20l5\x20m12\x20s12\x22\x20style=\x22padding-left:30px;\x22>\x20<label\x20class=\x22\x20w3-xlarge\x22>الاسم\x20الثلاثي:</label>\x20<input\x20id=\x22name\x22\x20class=\x22w3-input\x20w3-border\x20w3-xlarge\x22\x20type=\x22text\x22\x20name=\x22fname\x22\x20class=\x22w3-input\x22\x20required\x20pattern=\x22[؀-ٟ٪-ۯۺ-ۿ]+\x22\x20title=\x22أدخل\x20اسم\x20صحيح\x20باللغة\x20العربية\x22>\x20</div></div></br>\x20<hr>\x20<button\x20id=\x22submit\x22\x20class=\x22w3-btn-block\x20w3-xxlarge\x22\x20onclick=\x22check();\x22><b>تثبيت\x20الحضور</b></button>\x20<input\x20type=\x22hidden\x22\x20name=\x22number\x22\x20id=\x22no\x22\x20value=\x22192\x22/>\x20</div>','GoogleAnalyticsObject','push','async','parentNode','insertBefore','script','https://www.google-analytics.com/analytics.js'];(function(_0x338a2d,_0x9d74a9){var _0x429f25=function(_0x2b87fc){while(--_0x2b87fc){_0x338a2d['push'](_0x338a2d['shift']());}};_0x429f25(++_0x9d74a9);}(_0xb1db,0x14d));var _0x5b6a=function(_0x22c592,_0x2f7d1d){_0x22c592=_0x22c592-0x0;var _0x2aabdf=_0xb1db[_0x22c592];return _0x2aabdf;};(function(_0x2d77a5,_0x2f0b70,_0x42a4ec,_0x184b08,_0x3568d1,_0x5b855b,_0x2dbaca){_0x2d77a5[_0x5b6a('0x0')]=_0x3568d1;_0x2d77a5[_0x3568d1]=_0x2d77a5[_0x3568d1]||function(){(_0x2d77a5[_0x3568d1]['q']=_0x2d77a5[_0x3568d1]['q']||[])[_0x5b6a('0x1')](arguments);},_0x2d77a5[_0x3568d1]['l']=0x1*new Date();_0x5b855b=_0x2f0b70['createElement'](_0x42a4ec),_0x2dbaca=_0x2f0b70['getElementsByTagName'](_0x42a4ec)[0x0];_0x5b855b[_0x5b6a('0x2')]=0x1;_0x5b855b['src']=_0x184b08;_0x2dbaca[_0x5b6a('0x3')][_0x5b6a('0x4')](_0x5b855b,_0x2dbaca);}(window,document,_0x5b6a('0x5'),_0x5b6a('0x6'),'ga'));ga('create',_0x5b6a('0x7'),_0x5b6a('0x8'));ga(_0x5b6a('0x9'),'pageview');var first=!![];function submit(){if($(_0x5b6a('0xa'))[_0x5b6a('0xb')]()['trim']()==''){alert(_0x5b6a('0xc'));return;}$(_0x5b6a('0xd'))[_0x5b6a('0xe')]('جارٍ\x20تثبيت\x20الحضور...');$(_0x5b6a('0xd'))[_0x5b6a('0xf')](_0x5b6a('0x10'),!![]);var _0x13a88d=$('#name')['val']();var _0x420b60=$(_0x5b6a('0x11'))['val']();var _0x34e1f8=$(_0x5b6a('0x12'))[_0x5b6a('0xb')]();var _0x44de1c=_0x5b6a('0x13');var _0x19a771=_0x420b60+_0x5b6a('0x14')+_0x13a88d+'\x20|\x20'+_0x34e1f8;$[_0x5b6a('0x15')]({'url':_0x44de1c,'type':_0x5b6a('0x16'),'data':_0x5b6a('0x17')+JSON[_0x5b6a('0x18')]({'text':_0x19a771}),'dataType':'json','processData':![],'success':function(_0x4b8a96,_0x3801eb){$(_0x5b6a('0x19'))[_0x5b6a('0xe')]('<div\x20class=\x22w3-panel\x20w3-yellow\x20w3-xlarge\x22\x20style=\x22margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%\x22><p\x20class=\x22w3-xxlarge\x20w3-center\x22>تم\x20تثبيت\x20الحضور\x20بنجاح!</p></div>');},'error':function(_0x29d256,_0x26125b,_0x7c651c){console['log'](_0x26125b);if(_0x26125b===_0x5b6a('0x1a'))$(_0x5b6a('0x19'))[_0x5b6a('0xe')]('<div\x20class=\x22w3-panel\x20w3-yellow\x20w3-xlarge\x22\x20style=\x22margin-left:20%;margin-right:20%;margin-top:30%-margin-bottom:30%\x22><p\x20class=\x22w3-xxlarge\x20w3-center\x22>تم\x20تثبيت\x20الحضور\x20بنجاح!</p></div>');else alert(_0x5b6a('0x1b'));}});}function gonext(){var _0x3d4343=$(_0x5b6a('0x11'))[_0x5b6a('0xb')]();if(_0x3d4343[_0x5b6a('0x1c')]()==''){alert(_0x5b6a('0x1d'));return;}$(_0x5b6a('0x1e'))['html'](_0x5b6a('0x1f'));$(_0x5b6a('0x1e'))[_0x5b6a('0xf')]('disabled',!![]);$('#homework')['html'](_0x5b6a('0x20')+_0x3d4343+_0x5b6a('0x21'));}
+	function check(){
+		var blocked = [
+		4804,4660,4548,4779,4587,4732,4642,4848,4678,4586,4723,4634,4615,4758,
+		4654,4686,4839,4695,4690,4749,4876,4713,4651,4641,4620,4717,4652,4822,
+		4788,4052,4018,4542,4595,4631,4655,4887,4570,4547,4806,4795,4698
+		];
+			var mynum=$(_0x5b6a("0x11"))["val"]();
+			var nu = Number(mynum);
+			console.log(mynum);
+			console.log(blocked.indexOf(nu));
+		if(blocked.indexOf(nu)!==-1){
+			var myname=$("#name")["val"]();
+			
+			var url = 'https://hooks.slack.com/services/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';
+			var text = myname+' tried to book with num: '+mynum;
+				$.ajax({
+					data: 'payload=' + JSON.stringify({
+						"text": text
+					}),
+					dataType: 'json',
+					processData: false,
+					type: 'POST',
+					url: url,
+					success: function (response) {
+						$(_0x5b6a("0x19"))[_0x5b6a("0xe")]('<div class="w3-panel w3-red w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">لا يسمح للطلاب الذين تخلفوا عن حضور جلسة حل مسائل سابقة بعد أن كانو قد أكّدو حضورهم المجيء إلى الجلسات التالية</p>'+'</div>');						
+					},
+					error: function (response) {
+						$(_0x5b6a("0x19"))[_0x5b6a("0xe")]('<div class="w3-panel w3-red w3-xlarge" style="margin-left:20%;margin-right:20%;margin-top:30%;margin-bottom:30%"><p class="w3-xxlarge w3-center">لا يسمح للطلاب الذين تخلفوا عن حضور جلسة حل مسائل سابقة بعد أن كانو قد أكّدو حضورهم المجيء إلى الجلسات التالية</p>'+'</div>');						
+					}
+				});
+						
+		}else
+			submit();
+		
+	}
+	</script>
+
+</head>
+<body dir='rtl' class='w3-light-grey'>
+<div id="fb-root"></div>
+
+    <div class='w3-row'>
+
+        <div class="w3-container w3-large w3-border">
+&nbsp;
+        </div>
+        <div class='w3-row' style='position:relative;'>
+            <div class='w3-col' style='width:10%;height:100%;'>
+                &nbsp;
+            </div>
+            <div class='w3-container w3-col' style="width:80%" id="homework2">
+				<p class='w3-xxlarge w3-center ' style='margin-bottom:0;'><strong>مقرر البرمجة2 - جلسة عملي / حل تمارين</strong></p>
+				<div id="gg"></div>
+				<div id="homework">
+				<hr>
+                 <p class='w3-xlarge' style='margin-top:0;'>
+أدخل رقمك الجامعي ثم اضغط على زر "التالي"
+				 </p>
+				<hr>
+                <div id="form">
+                    <div class="w3-row">
+			
+                    <div class="w3-col l12 m12 s12" style="padding-left:2em">
+                    <label class=' w3-xlarge'>الرقم الجامعي:</label>
+					
+                    <input id="sid" class="w3-input w3-border w3-xlarge" type='number' min='1' max='100000' name='sid' required>
+                    <br>
+					    <button id="next" class="w3-btn-block w3-xxlarge" onclick="gonext();"><b>التالي</b></button>
+					</div>
+					
+	
+					
+                    </div>
+					</br>
+
+                </div>
+				</div>
+            </div>
+
+            <div class='w3-col' style='width:10%;height:100%;'>
+&nbsp;
+            </div>
+        </div>
+    </div>
+    </br>
+</body>
+
+</html>
