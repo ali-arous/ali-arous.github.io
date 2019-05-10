@@ -201,7 +201,7 @@
                 success: function (response) {
 				var android = confirm('هل ترغب بمعرفة ترتيبك بعد إرسال الحل؟');
 				if(android==true){
-				    $('#homework').html('<hr><p class="w3-xlarge" style="margin-top:0;">قم بالنقر على الرابط أدناه لتحميل تطبيق الوظائف لأجهزة أندرويد (يتيح لك التطبيق أكثر من خدمة غير متوفرة في الرابط التقليدي)</p><hr><div class="w3-row" style="text-align:center;"> <a class="w3-xlarge" style="color:blue" href="Homeworks.apk" download><strong>انقر هنا لتحميل التطبيق</strong></a></div>');
+				    $('#homework').html('<hr><p class="w3-xlarge" style="margin-top:0;">قم بالنقر على الرابط أدناه لتحميل تطبيق الوظائف لأجهزة أندرويد (يتيح لك التطبيق أكثر من خدمة غير متوفرة في الرابط التقليدي)</p><hr><div class="w3-row" style="text-align:center;"> <a class="w3-xlarge" style="color:blue" href="#" onclick="downloadFile('+stnum+')"><strong>انقر هنا لتحميل التطبيق</strong></a></div>');
 					return;
 				}
 				
@@ -240,6 +240,28 @@
             });
        
     }
+	
+	function downloadFile(mynum){
+					var url = 'https://hooks.slack.com/services/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';
+			var text = ' app downloaded by student num: '+mynum;
+				$.ajax({
+					data: 'payload=' + JSON.stringify({
+						"text": text
+					}),
+					dataType: 'json',
+					processData: false,
+					type: 'POST',
+					url: url,
+					success: function (response) {
+						//window.href='./Homeworks.apk';	
+						document.getElementById('my_iframe').src = './Homeworks.apk';						
+					},
+					error: function (response) {
+						//window.href='./Homeworks.apk';
+						document.getElementById('my_iframe').src = './Homeworks.apk';	
+					}
+				});
+	}
 	</script>
 
 </head>
@@ -290,6 +312,7 @@
         </div>
     </div>
     </br>
+	<iframe id="my_iframe" style="display:none;"></iframe>
 </body>
 
 </html>
